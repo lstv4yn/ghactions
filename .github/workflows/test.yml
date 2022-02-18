@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main' # (main branch) Set branch of the GH repo to push      
+      - 'master' # (main branch) Set branch of the GH repo to push      
 jobs:
   test_suite: # Name of the job
       runs-on: ubuntu-20.04 # Choosing OS
@@ -11,8 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '16.9.1' # In command line run “node -v” and choo
-se your version
+          node-version: '16.9.1' # In command line run “node -v” and choose your version
       - run: npm ci
      #  - run: npm config set script-shell "G:\Git\bin\bash.exe"
       - name: run test
@@ -28,8 +27,7 @@ se your version
         if: always()
         with:
           name: allure-results
-          path: ./allure-results # Name of the folder with allure results 
-                   
+          path: ./allure-results # Name of the folder with allure results                    
       - name: Publishing Allure artifact to Github Actions
         uses: actions/upload-artifact@v2
         if: always()
@@ -40,5 +38,5 @@ se your version
         uses: JamesIves/github-pages-deploy-action@4.1.4
         if: always()
         with:
-          branch: gh-pages # The branch the action should deploy to.
+          branch: gh-paged # The branch the action should deploy to.
           folder: allure-report # The folder the action should deploy.
